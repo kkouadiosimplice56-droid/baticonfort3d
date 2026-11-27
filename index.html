@@ -185,7 +185,7 @@ code{background:var(--soft);padding:1px 5px;border-radius:5px;overflow-wrap:anyw
   <div class="bd">
     <h3 class="sec" style="margin-top:0">Connexion au capteur</h3>
     <div class="form">
-      <label>Mode de connexion<select id="iMode"><option value="direct">Direct (avec mes codes Netatmo)</option><option value="srv">Serveur de partage (sans codes)</option></select></label>
+      <label>Mode de connexion<select id="iMode"><option value="srv">Serveur de partage (sans codes)</option><option value="direct">Direct (avec mes codes Netatmo)</option></select></label>
       <label>Numéro de la salle (Room Revit)<input id="iSalle" value="1.02"></label>
     </div>
     <div class="form" id="fDirect" style="margin-top:10px">
@@ -247,7 +247,7 @@ code{background:var(--soft);padding:1px 5px;border-radius:5px;overflow-wrap:anyw
   <div class="bd help">
     <p>Vos codes Netatmo restent dans <b>votre</b> navigateur : une autre personne qui ouvre la page ne les a pas, et ne voit donc rien. Pour qu'elle voie les mêmes mesures <b>sans aucun code</b>, la page doit passer par un <b>serveur de partage</b> qui garde les codes en lieu sûr (fichier <code>serveur_partage_cloudflare.js</code>, gratuit sur Cloudflare).</p>
     <p id="shOk" hidden>Le serveur de partage est configuré. Copiez ce lien et envoyez-le : la personne arrive directement sur le tableau de bord, en <b>mode consultation</b>. Elle peut regarder, filtrer, copier et exporter les mesures, mais elle n'a ni « Réglages » ni « Partager » : vous restez le seul propriétaire.</p>
-    <p id="shNo">Aucun serveur de partage n'est encore configuré. Installez-le, puis renseignez son adresse dans « Réglages », mode « Serveur de partage ».</p>
+    <p id="shNo">Renseignez l'adresse du serveur de partage dans « Réglages ».</p>
     <label>Adresse de cette page en ligne (GitHub Pages, Netlify…)<input id="iPage" placeholder="https://monsite.github.io/baticonfort3d/"></label>
     <label style="margin-top:10px">Lien à partager<input id="shLink" readonly></label>
   </div>
@@ -277,6 +277,7 @@ code{background:var(--soft);padding:1px 5px;border-radius:5px;overflow-wrap:anyw
 {
 const $=id=>document.getElementById(id);
 const API="https://api.netatmo.com", LS="bc3d_netatmo";
+const SRV_DEFAUT="https://baticonfort3d.kkouadiosimplice56.workers.dev"; // serveur de partage (adresse publique, sans secret)
 let VISITEUR=false, cfg={}, data=[], shown=[], devices=[], device=null, metric="co2", timer=null;
 const UNIT={co2:"ppm",t:"°C",h:"%",n:"dB",p:"hPa"}, LAB={co2:"CO₂",t:"Température",h:"Humidité",n:"Bruit",p:"Pression"}, DEC={co2:0,t:1,h:0,n:0,p:1};
 const COL={Confortable:"var(--ok)",Acceptable:"light-dark(#65a30d,#a3e635)",Médiocre:"var(--mid)",Inconfortable:"var(--bad)",Inconnu:"var(--mut)"};
@@ -313,8 +314,12 @@ function clearMsg(){$("msg").className="msg";}
 const FIELDS=["iMode","iId","iSec","iRt","iSrv","iSalle","iAuto","sCo2a","sCo2b","sTa","sTb","sHa","sHb","iPer","iFreq","iCours","iH1","iH2","iJ","iPage"];
 function load(){try{cfg=JSON.parse(localStorage.getItem(LS)||"{}")}catch(e){cfg={}}
   FIELDS.forEach(f=>{if(cfg[f]!=null){const el=$(f);if(el.type==="checkbox")el.checked=cfg[f];else el.value=cfg[f];}});
-  const q=new URLSearchParams(location.search);            // lien de partage : ?srv=...&salle=... → mode visiteur
-  if(q.get("srv")){VISITEUR=true;cfg={...cfg,iMode:"srv",iSrv:q.get("srv")};$("iMode").value="srv";$("iSrv").value=q.get("srv");if(q.get("salle"))$("iSalle").value=q.get("salle");cfg.iSalle=$("iSalle").value;
+  const q=new URLSearchParams(location.search),admin=location.hash==="#admin";
+  if(!cfg.iSrv){cfg.iSrv=SRV_DEFAUT;$("iSrv").value=SRV_DEFAUT;}
+  if(!cfg.iMode){cfg.iMode="srv";$("iMode").value="srv";}
+  if(!admin){                                               // tout le monde, sauf le propriétaire (#admin) : consultation seule
+    VISITEUR=true;const srv=q.get("srv")||SRV_DEFAUT;cfg={...cfg,iMode:"srv",iSrv:srv};$("iMode").value="srv";$("iSrv").value=srv;
+    if(q.get("salle"))$("iSalle").value=q.get("salle");cfg.iSalle=$("iSalle").value;
     ["bSet","bShare"].forEach(i=>$(i).hidden=true);}
   modeUI();}
 function save(){if(VISITEUR){FIELDS.forEach(f=>{const el=$(f);cfg[f]=el.type==="checkbox"?el.checked:el.value.trim();});return;}FIELDS.forEach(f=>{const el=$(f);cfg[f]=el.type==="checkbox"?el.checked:el.value.trim();});
@@ -486,7 +491,7 @@ function xSync(){const p=$("xPer").value;if(p==="aff"){$("xFrom").value=$("iFrom
 
 // ---- partage
 function shareLink(){const base=($("iPage").value.trim()||location.href.split(/[?#]/)[0]);
-  return cfg.iMode==="srv"&&cfg.iSrv?base+"?srv="+encodeURIComponent(cfg.iSrv)+"&salle="+encodeURIComponent($("iSalle").value.trim()):"";}
+  return cfg.iSrv?base+"?salle="+encodeURIComponent($("iSalle").value.trim()):"";}
 function shareUI(){const l=shareLink();$("shOk").hidden=!l;$("shNo").hidden=!!l;$("shLink").value=l||"Configurez d'abord le serveur de partage";}
 
 // ---- sélection et export direct
