@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BâtiConfort 3D – Tableau de bord</title>
+<link rel="icon" href="data:image/png;base64,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">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600&family=Inter:wght@400;500;600&display=swap">
+<style>
+:root{color-scheme:light dark;--bg:light-dark(#eef2f7,#090e18);--card:light-dark(#fff,#111a2b);--soft:light-dark(#f5f8fc,#0d1524);--ink:light-dark(#0b1220,#e6edf7);--mut:light-dark(#5b6878,#97a6ba);--line:light-dark(#dbe3ee,#243049);--navy:light-dark(#0F3D6E,#7fb3ef);--teal:light-dark(#0F766E,#43c5b4);--amber:#D97706;--ok:light-dark(#15803d,#4ade80);--mid:light-dark(#b45309,#fbbf24);--bad:light-dark(#b91c1c,#f87171)}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 Inter,system-ui,sans-serif;overflow-x:clip}
+h1,h2,h3,.num{font-family:"Space Grotesk",Inter,sans-serif}
+button,select,input{font:inherit;font-size:15px;min-height:42px;border-radius:10px}
+button{border:1px solid var(--line);background:var(--card);color:var(--ink);padding:0 14px;cursor:pointer;font-weight:600}
+button.pri{background:var(--teal);color:#fff;border-color:transparent}
+button:focus-visible,select:focus-visible,input:focus-visible{outline:3px solid var(--amber);outline-offset:2px}
+input,select{border:1px solid var(--line);background:var(--soft);color:var(--ink);padding:0 10px;width:100%}
+label{font-size:13px;color:var(--mut);display:grid;gap:4px}
+label.chk{display:flex;align-items:center;gap:8px;color:var(--ink);font-size:14px}
+label.chk input{width:20px;min-height:20px}
+/* barre du haut */
+header{background:#0F3D6E;color:#fff;padding:12px max(3vw,14px);display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+header img{width:48px;height:48px;border-radius:12px;flex:none}
+header .t{flex:1 1 260px}
+header h1{margin:0;font-size:clamp(20px,2.4vw,26px);line-height:1.15}
+header p{margin:0;opacity:.8;font-size:13px}
+header .acts{display:flex;flex-wrap:wrap;gap:8px}
+header button{background:rgba(255,255,255,.08);color:#fff;border-color:rgba(255,255,255,.35)}
+/* mise en page */
+.app{display:grid;grid-template-columns:300px minmax(0,1fr);gap:16px;padding:16px max(3vw,14px);max-width:1500px;margin:0 auto;align-items:start}
+aside{position:sticky;top:12px;display:grid;gap:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px}
+.card h2{margin:0 0 10px;font-size:17px}
+.stack{display:grid;gap:10px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+main{display:grid;gap:16px}
+.hero{display:grid;grid-template-columns:minmax(0,1fr);gap:16px}
+.gcard{display:flex;flex-wrap:wrap;gap:10px 28px;align-items:center}.gcard .why{margin:0;flex:1 1 260px}
+.global{display:flex;gap:14px;align-items:center}
+.ring{width:84px;height:84px;border-radius:50%;flex:none;display:grid;place-items:center;color:#fff;font:600 30px "Space Grotesk",sans-serif;background:var(--mut)}
+.global b{font-size:22px;display:block;line-height:1.2}
+.global small{color:var(--mut);display:block}
+.why{margin:10px 0 0;padding:0;list-style:none;font-size:13px;display:grid;gap:4px}
+.why li::before{content:"• ";color:var(--mut)}
+.kpis{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
+.k{background:var(--soft);border:1px solid var(--line);border-radius:12px;padding:10px 12px;border-top:4px solid var(--line)}
+.k span{display:block;color:var(--mut);font-size:13px}
+.k .num{font-size:clamp(24px,2.2vw,32px);font-weight:600;line-height:1.1;white-space:nowrap}
+.k .num i{font-style:normal;font-size:13px;color:var(--mut);margin-left:3px}
+.k em{font-style:normal;font-size:13px;font-weight:600;display:block;margin-top:2px}
+.tabs{display:flex;flex-wrap:wrap;gap:6px;border-bottom:1px solid var(--line);margin:-2px -2px 12px;padding-bottom:10px}
+.tabs button[aria-selected=true],.seg button[aria-pressed=true]{background:var(--navy);color:var(--card);border-color:transparent}
+.seg{display:flex;flex-wrap:wrap;gap:6px}
+.bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;margin-bottom:8px}
+.bar h2{margin:0}
+.fig{position:relative;min-height:360px}.fig>svg{position:absolute;inset:0;width:100%;height:100%}
+.tip{position:absolute;pointer-events:none;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:6px 9px;font-size:13px;box-shadow:0 4px 14px rgba(0,0,0,.15);display:none;white-space:nowrap;z-index:2}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px}
+.stats h3{margin:0 0 6px;font-size:15px}
+.rep{display:flex;height:22px;border-radius:7px;overflow:hidden;margin:6px 0;background:var(--line)}
+.leg{display:flex;flex-wrap:wrap;gap:10px;font-size:13px;color:var(--mut)}
+.leg i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:4px}
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+th,td{padding:6px 8px;border-bottom:1px solid var(--line);text-align:right;white-space:nowrap}
+th:first-child,td:first-child{text-align:left}th{color:var(--mut);font-weight:600;position:sticky;top:0;background:var(--card)}
+.scroll{overflow:auto;max-height:440px}.obs{max-height:560px}
+th.ck,td.ck{width:36px;text-align:center;padding:4px}td.ck input,th.ck input{width:18px;min-height:18px;margin:0}
+tr.sel td{background:light-dark(#e8f3f1,#12302c)}#tb tr{cursor:pointer}#tb{user-select:none;-webkit-user-select:none}
+.obsf{display:grid;gap:10px;margin-bottom:10px}.obsg{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}
+.selbar{background:var(--soft);border:1px solid var(--line);border-radius:10px;padding:8px 10px}
+.tag{display:inline-block;padding:1px 8px;border-radius:99px;font-size:12px;font-weight:600;color:#fff}
+.note{font-size:12.5px;color:var(--mut);margin:6px 0 0}
+.msg{padding:10px 14px;border-radius:10px;border:1px solid var(--line);background:var(--card);display:none;font-size:14px}
+.msg.on{display:block}.msg.err{border-color:var(--bad);color:var(--bad)}
+[hidden]{display:none!important}
+/* fenêtres */
+dialog{border:0;border-radius:16px;padding:0;width:min(680px,94vw);max-height:90vh;background:var(--card);color:var(--ink);box-shadow:0 20px 60px rgba(0,0,0,.35)}
+dialog::backdrop{background:rgba(5,12,25,.55)}
+dialog .hd{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;border-bottom:1px solid var(--line);position:sticky;top:0;background:var(--card);z-index:1}
+dialog .hd h2{margin:0;font-size:19px}
+dialog .bd{padding:16px 18px;overflow:auto}
+dialog .ft{display:flex;flex-wrap:wrap;gap:8px;justify-content:flex-end;padding:12px 18px;border-top:1px solid var(--line)}
+.form{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}
+.sec{margin:14px 0 6px;font-size:15px}
+.help p,.help li{font-size:14px}.help table td{white-space:normal;text-align:left}
+code{background:var(--soft);padding:1px 5px;border-radius:5px;overflow-wrap:anywhere}
+@media(max-width:1100px){.kpis{grid-template-columns:repeat(auto-fit,minmax(140px,1fr))}}
+@media(max-width:860px){.app{grid-template-columns:minmax(0,1fr)}aside{position:static;order:2}}
+@media(max-width:600px){.fig{min-height:260px}.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(prefers-reduced-motion:no-preference){.live{animation:p 2.4s infinite}@keyframes p{50%{filter:brightness(1.25)}}}
+</style>
+</head>
+<body>
+<header>
+  <img src="data:image/png;base64,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" alt="Logo BâtiConfort 3D">
+  <div class="t"><h1>BâtiConfort 3D · <span id="hSalle">Salle</span></h1><p>KG Géonumérique · qualité de l'air intérieur en direct · <span id="hMode">non connecté</span></p></div>
+  <div class="acts"><button id="bRefresh">Actualiser</button><button id="bShare">Partager</button><button id="bHelp">Comment ça marche ?</button><button id="bSet">Réglages</button></div>
+</header>
+
+<div class="app">
+  <aside>
+    <section class="card">
+      <h2>Affichage</h2>
+      <div class="stack">
+        <label>Période<select id="iPer"><option value="1">Dernières 24 h</option><option value="2">2 derniers jours</option><option value="7">7 derniers jours</option><option value="30">30 derniers jours</option><option value="90">90 derniers jours</option><option value="perso">Personnalisée</option></select></label>
+        <label>Du<input type="datetime-local" id="iFrom"></label>
+        <label>Au<input type="datetime-local" id="iTo"></label>
+        <label>Fréquence<select id="iFreq"><option value="max">Toutes les mesures (≈ 5 min)</option><option value="30min">Moyenne par 30 min</option><option value="1hour">Moyenne par heure</option><option value="3hours">Moyenne par 3 h</option><option value="1day">Moyenne par jour</option></select></label>
+        <label>Capteur<select id="iDev"><option value="">–</option></select></label>
+        <label class="chk"><input type="checkbox" id="iCours">Filtrer par plage horaire</label>
+        <div class="row2" id="hRow"><label>De<input type="time" id="iH1" value="08:00"></label><label>À<input type="time" id="iH2" value="18:00"></label></div>
+        <label id="jRow">Jours<select id="iJ"><option value="all">Tous les jours</option><option value="wk">Lundi à vendredi</option><option value="we">Samedi et dimanche</option></select></label>
+        <button class="pri" id="bLoad">Afficher</button>
+      </div>
+    </section>
+    <section class="card">
+      <h2>Exporter des mesures</h2>
+      <p class="note" style="margin:0 0 10px">Choisissez la période, la fréquence, les mesures et le format (CSV pour Excel, JSON pour un programme ou un SIG).</p>
+      <button class="pri" id="bExp" style="width:100%">Exporter…</button>
+    </section>
+    <section class="card">
+      <h2>Confort sur la période</h2>
+      <div id="mini"><p class="note">Aucune mesure chargée.</p></div>
+    </section>
+  </aside>
+
+  <main>
+    <div class="msg" id="msg"></div>
+    <div class="hero">
+      <section class="card gcard">
+        <div class="global"><div class="ring" id="ring">–</div><div><b id="gTxt">Pas encore de données</b><small id="gSub">Ouvrez « Réglages » pour connecter le capteur.</small></div></div>
+        <ul class="why" id="why"></ul>
+      </section>
+      <section class="card">
+        <div class="bar"><h2>En ce moment</h2><span class="note" id="last" style="margin:0"></span></div>
+        <div class="kpis">
+          <div class="k" id="cCo2"><span>CO₂</span><div class="num" id="kCo2">–<i>ppm</i></div><em id="eCo2"></em></div>
+          <div class="k" id="cT"><span>Température</span><div class="num" id="kT">–<i>°C</i></div><em id="eT"></em></div>
+          <div class="k" id="cH"><span>Humidité</span><div class="num" id="kH">–<i>%</i></div><em id="eH"></em></div>
+          <div class="k" id="cN"><span>Bruit</span><div class="num" id="kN">–<i>dB</i></div><em id="eN"></em></div>
+          <div class="k" id="cP"><span>Pression</span><div class="num" id="kP">–<i>hPa</i></div><em id="eP"></em></div>
+        </div>
+      </section>
+    </div>
+
+    <section class="card">
+      <div class="tabs" role="tablist"><button role="tab" data-tab="g" aria-selected="true">Courbes</button><button role="tab" data-tab="b" aria-selected="false">Bilan</button><span class="note" id="pInfo" style="margin:0 0 0 auto;align-self:center"></span></div>
+      <div id="tab-g">
+        <div class="bar"><h2 id="cTitle">CO₂ (ppm)</h2>
+          <div class="seg" id="segM"><button data-m="co2" aria-pressed="true">CO₂</button><button data-m="t" aria-pressed="false">Température</button><button data-m="h" aria-pressed="false">Humidité</button><button data-m="n" aria-pressed="false">Bruit</button><button data-m="p" aria-pressed="false">Pression</button></div>
+        </div>
+        <div class="fig"><svg id="chart" role="img" aria-label="Courbe des mesures"></svg><div class="tip" id="tip"></div></div>
+        <p class="note">Survolez ou touchez la courbe pour lire les valeurs. Fond vert : zone de confort · fond rouge : inconfort.</p>
+      </div>
+      <div id="tab-b" hidden><div class="stats" id="stats"><p class="note">Aucune mesure chargée.</p></div></div>
+    </section>
+
+    <section class="card">
+      <div class="bar"><h2>Toutes les observations</h2>
+        <div class="seg" id="fEtat"><button data-e="all" aria-pressed="true">Toutes</button><button data-e="Confortable" aria-pressed="false">Confortable</button><button data-e="Acceptable" aria-pressed="false">Acceptable</button><button data-e="Médiocre" aria-pressed="false">Médiocre</button><button data-e="Inconfortable" aria-pressed="false">Inconfortable</button></div>
+      </div>
+      <div class="obsf">
+        <div class="seg" id="qP"><button data-q="all" aria-pressed="true">Toute la période</button><button data-q="1h" aria-pressed="false">Dernière heure</button><button data-q="3h" aria-pressed="false">3 dernières heures</button><button data-q="today" aria-pressed="false">Aujourd'hui</button><button data-q="yest" aria-pressed="false">Hier</button></div>
+        <div class="obsg">
+          <label>Du<input type="datetime-local" id="oFrom"></label>
+          <label>Au<input type="datetime-local" id="oTo"></label>
+          <label>Trier par<select id="oSort"><option value="tsd">Plus récentes d'abord</option><option value="tsa">Plus anciennes d'abord</option><option value="id">Indice : pire d'abord</option><option value="co2d">CO₂ : plus élevé d'abord</option><option value="td">Température : plus élevée d'abord</option><option value="ta">Température : plus basse d'abord</option><option value="hd">Humidité : plus élevée d'abord</option></select></label>
+        </div>
+      </div>
+      <div class="bar selbar"><span id="selInfo" class="note" style="margin:0">Cochez les lignes à exporter (Maj + clic pour sélectionner une série).</span>
+        <div class="seg"><button id="sAll">Tout cocher</button><button id="sNone">Tout décocher</button><button id="cTxt">Copier (texte)</button><button id="cJson">Copier (JSON)</button><button class="pri" id="sCsv">Exporter en CSV</button><button class="pri" id="sJson">Exporter en JSON</button></div>
+      </div>
+      <p class="note" id="tNote" style="margin:0 0 8px">Aucune mesure chargée.</p>
+      <div class="scroll obs"><table><thead><tr><th class="ck"><input type="checkbox" id="ckAll" aria-label="Tout cocher"></th><th>Date et heure</th><th>CO₂ ppm</th><th>T °C</th><th>HR %</th><th>Bruit dB</th><th>Pression hPa</th><th>Indice</th><th>Confort</th></tr></thead><tbody id="tb"></tbody></table></div>
+    </section>
+  </main>
+</div>
+
+<!-- Réglages -->
+<dialog id="dSet"><form method="dialog">
+  <div class="hd"><h2>Réglages</h2><button value="x" aria-label="Fermer">Fermer</button></div>
+  <div class="bd">
+    <h3 class="sec" style="margin-top:0">Connexion au capteur</h3>
+    <div class="form">
+      <label>Mode de connexion<select id="iMode"><option value="direct">Direct (avec mes codes Netatmo)</option><option value="srv">Serveur de partage (sans codes)</option></select></label>
+      <label>Numéro de la salle (Room Revit)<input id="iSalle" value="1.02"></label>
+    </div>
+    <div class="form" id="fDirect" style="margin-top:10px">
+      <label>Client ID<input id="iId" autocomplete="off"></label>
+      <label>Client secret<input id="iSec" type="password" autocomplete="off"></label>
+      <label>Refresh token<input id="iRt" type="password" autocomplete="off"></label>
+    </div>
+    <div class="form" id="fSrv" style="margin-top:10px">
+      <label>Adresse du serveur de partage<input id="iSrv" placeholder="https://baticonfort3d.xxx.workers.dev"></label>
+    </div>
+    <h3 class="sec">Seuils de confort</h3>
+    <div class="form">
+      <label>CO₂ bon jusqu'à (ppm)<input type="number" id="sCo2a" value="800"></label>
+      <label>CO₂ mauvais au-delà de (ppm)<input type="number" id="sCo2b" value="1300"></label>
+      <label>Température confort min (°C)<input type="number" step="0.5" id="sTa" value="19"></label>
+      <label>Température confort max (°C)<input type="number" step="0.5" id="sTb" value="24"></label>
+      <label>Humidité confort min (%)<input type="number" id="sHa" value="30"></label>
+      <label>Humidité confort max (%)<input type="number" id="sHb" value="65"></label>
+      <label>Actualisation automatique<select id="iAuto"><option value="0">Désactivée</option><option value="5" selected>Toutes les 5 min</option><option value="10">Toutes les 10 min</option><option value="30">Toutes les 30 min</option></select></label>
+    </div>
+    <p class="note">Tout reste uniquement dans ce navigateur, rien n'est écrit dans le fichier.</p>
+  </div>
+  <div class="ft"><button type="button" id="bForget">Effacer mes codes</button><button class="pri" type="button" id="bSave">Enregistrer et se connecter</button></div>
+</form></dialog>
+
+<!-- Export -->
+<dialog id="dExp"><form method="dialog">
+  <div class="hd"><h2>Exporter des mesures</h2><button value="x">Fermer</button></div>
+  <div class="bd">
+    <div class="form">
+      <label>Période<select id="xPer"><option value="aff">Celle affichée</option><option value="1">Dernières 24 h</option><option value="7">7 derniers jours</option><option value="30">30 derniers jours</option><option value="90">90 derniers jours</option><option value="perso">Personnalisée</option></select></label>
+      <label>Du<input type="datetime-local" id="xFrom"></label>
+      <label>Au<input type="datetime-local" id="xTo"></label>
+      <label>Fréquence<select id="xFreq"><option value="max">Toutes les mesures (≈ 5 min)</option><option value="30min">Moyenne par 30 min</option><option value="1hour">Moyenne par heure</option><option value="3hours">Moyenne par 3 h</option><option value="1day">Moyenne par jour</option></select></label>
+      <label>Format<select id="xFmt"><option value="csv">CSV (Excel)</option><option value="json">JSON</option></select></label>
+      <label class="chk" style="align-self:end;min-height:42px"><input type="checkbox" id="xCours">Filtrer par plage horaire</label>
+      <label>De<input type="time" id="xH1" value="08:00"></label>
+      <label>À<input type="time" id="xH2" value="18:00"></label>
+      <label>Jours<select id="xJ"><option value="all">Tous les jours</option><option value="wk">Lundi à vendredi</option><option value="we">Samedi et dimanche</option></select></label>
+    </div>
+    <h3 class="sec">Mesures à inclure</h3>
+    <div class="seg" id="xVars">
+      <label class="chk"><input type="checkbox" value="co2" checked>CO₂</label>
+      <label class="chk"><input type="checkbox" value="t" checked>Température</label>
+      <label class="chk"><input type="checkbox" value="h" checked>Humidité</label>
+      <label class="chk"><input type="checkbox" value="n" checked>Bruit</label>
+      <label class="chk"><input type="checkbox" value="p" checked>Pression</label>
+      <label class="chk"><input type="checkbox" value="i" checked>Indice /100</label>
+      <label class="chk"><input type="checkbox" value="e" checked>Niveau de confort</label>
+    </div>
+    <p class="note" id="xInfo"></p>
+  </div>
+  <div class="ft"><button type="button" id="xCopy">Copier dans le presse-papiers</button><button class="pri" type="button" id="xGo">Télécharger</button></div>
+</form></dialog>
+
+<!-- Partage -->
+<dialog id="dShare"><form method="dialog">
+  <div class="hd"><h2>Partager le tableau de bord</h2><button value="x">Fermer</button></div>
+  <div class="bd help">
+    <p>Vos codes Netatmo restent dans <b>votre</b> navigateur : une autre personne qui ouvre la page ne les a pas, et ne voit donc rien. Pour qu'elle voie les mêmes mesures <b>sans aucun code</b>, la page doit passer par un <b>serveur de partage</b> qui garde les codes en lieu sûr (fichier <code>serveur_partage_cloudflare.js</code>, gratuit sur Cloudflare).</p>
+    <p id="shOk" hidden>Le serveur de partage est configuré. Copiez ce lien et envoyez-le : la personne arrive directement sur le tableau de bord, en <b>mode consultation</b>. Elle peut regarder, filtrer, copier et exporter les mesures, mais elle n'a ni « Réglages » ni « Partager » : vous restez le seul propriétaire.</p>
+    <p id="shNo">Aucun serveur de partage n'est encore configuré. Installez-le, puis renseignez son adresse dans « Réglages », mode « Serveur de partage ».</p>
+    <label>Adresse de cette page en ligne (GitHub Pages, Netlify…)<input id="iPage" placeholder="https://monsite.github.io/baticonfort3d/"></label>
+    <label style="margin-top:10px">Lien à partager<input id="shLink" readonly></label>
+  </div>
+  <div class="ft"><button class="pri" type="button" id="shCopy">Copier le lien</button></div>
+</form></dialog>
+
+<!-- Aide -->
+<dialog id="dHelp"><form method="dialog">
+  <div class="hd"><h2>Comment sont calculés les indicateurs ?</h2><button value="x">Fermer</button></div>
+  <div class="bd help">
+    <p><b>Indice de confort de la salle (sur 100)</b> : il combine les trois paramètres qui comptent pour le confort, <b>CO₂ (40 %)</b>, <b>température (35 %)</b> et <b>humidité (25 %)</b>. Le bruit et la pression n'entrent pas dans l'indice.</p>
+    <p>Chaque paramètre a sa propre note sur 100 : 100 dans sa zone de confort, puis elle baisse quand on s'en éloigne (CO₂ : 50/100 à 1 300 ppm, 0 à 2 000 ppm · température : −25 points par °C hors zone · humidité : −5 points par % hors zone). L'indice est la moyenne pondérée de ces trois notes.</p>
+    <p><b>Confortable</b> ≥ 80 · <b>Acceptable</b> 60 à 79 · <b>Médiocre</b> 40 à 59 · <b>Inconfortable</b> &lt; 40. Exemple : CO₂ 1 405 ppm (43/100), 23,6 °C (100), 38 % (100) → indice 77, <b>acceptable</b>, avec le conseil d'aérer.</p>
+    <p><b>Application Netatmo</b> : la note affichée par l'appli Home Coach est rappelée sous l'indice. Netatmo a sa propre méthode, les deux peuvent légèrement différer.</p>
+    <table>
+      <tr><td><b>CO₂</b></td><td>Bon ≤ 800 ppm · Moyen jusqu'à 1 300 ppm · Mauvais au-delà (il faut aérer). 1 300 ppm est la valeur de référence souvent retenue pour les salles occupées.</td></tr>
+      <tr><td><b>Température</b></td><td>Confort entre 19 et 24 °C · « Un peu frais / chaud » jusqu'à 2 °C d'écart · « Froid / Trop chaud » au-delà.</td></tr>
+      <tr><td><b>Humidité</b></td><td>Confort entre 30 et 65 % · « Un peu sec / humide » jusqu'à 5 % d'écart · « Trop sec / Trop humide » au-delà.</td></tr>
+      <tr><td><b>Bruit</b></td><td>Silencieux &lt; 40 dB · Calme &lt; 55 dB · Bruyant &lt; 65 dB · Très bruyant au-delà. Indicatif, il n'entre pas dans l'indice.</td></tr>
+      <tr><td><b>Pression</b></td><td>Valeur atmosphérique, donnée à titre d'information (météo).</td></tr>
+    </table>
+    <p>Tous les seuils sont modifiables dans « Réglages ».</p>
+  </div>
+</form></dialog>
+
+<script>
+{
+const $=id=>document.getElementById(id);
+const API="https://api.netatmo.com", LS="bc3d_netatmo";
+let VISITEUR=false, cfg={}, data=[], shown=[], devices=[], device=null, metric="co2", timer=null;
+const UNIT={co2:"ppm",t:"°C",h:"%",n:"dB",p:"hPa"}, LAB={co2:"CO₂",t:"Température",h:"Humidité",n:"Bruit",p:"Pression"}, DEC={co2:0,t:1,h:0,n:0,p:1};
+const COL={Confortable:"var(--ok)",Acceptable:"light-dark(#65a30d,#a3e635)",Médiocre:"var(--mid)",Inconfortable:"var(--bad)",Inconnu:"var(--mut)"};
+const STEP={max:300,"30min":1800,"1hour":3600,"3hours":10800,"1day":86400};
+const HIDX=[["Sain","ok"],["Agréable","ok"],["Correct","mid"],["Médiocre","bad"],["Malsain","bad"]];
+const S=()=>({co2a:+$("sCo2a").value||800,co2b:+$("sCo2b").value||1300,ta:+$("sTa").value,tb:+$("sTb").value,ha:+$("sHa").value,hb:+$("sHb").value});
+
+// ---- qualification de chaque paramètre : [libellé, niveau 0 bon / 1 moyen / 2 mauvais]
+function qual(m,v){const s=S();if(v==null||isNaN(v))return null;
+  if(m==="co2")return v<=s.co2a?["Bon",0]:v<=s.co2b?["Moyen",1]:["Mauvais : aérer",2];
+  if(m==="t")return v<s.ta-2?["Froid",2]:v<s.ta?["Un peu frais",1]:v>s.tb+2?["Trop chaud",2]:v>s.tb?["Un peu chaud",1]:["Confortable",0];
+  if(m==="h")return v<s.ha-5?["Trop sec",2]:v<s.ha?["Un peu sec",1]:v>s.hb+5?["Trop humide",2]:v>s.hb?["Un peu humide",1]:["Confortable",0];
+  if(m==="n")return v<40?["Silencieux",0]:v<55?["Calme",0]:v<65?["Bruyant",1]:["Très bruyant",2];
+  if(m==="p")return ["Information météo",-1];}
+const NIV=["Confortable","Acceptable","Médiocre","Inconfortable"];
+// Indice de confort /100 : chaque paramètre vaut 100 dans sa zone de confort et baisse quand on s'en éloigne.
+const W={co2:.4,t:.35,h:.25};
+function sous(m,v){const s=S(),cl=x=>Math.max(0,Math.min(100,x));if(v==null||isNaN(v))return null;
+  if(m==="co2")return v<=s.co2a?100:v<=s.co2b?cl(100-50*(v-s.co2a)/(s.co2b-s.co2a)):cl(50-50*(v-s.co2b)/700);
+  if(m==="t")return cl(100-25*Math.max(0,s.ta-v,v-s.tb));
+  if(m==="h")return cl(100-5*Math.max(0,s.ha-v,v-s.hb));}
+function indice(co2,t,h){const a=sous("co2",co2),b=sous("t",t),c=sous("h",h);if(a==null||b==null||c==null)return null;return Math.round(W.co2*a+W.t*b+W.h*c);}
+const niveau=i=>i==null?"Inconnu":i>=80?"Confortable":i>=60?"Acceptable":i>=40?"Médiocre":"Inconfortable";
+function etat(co2,t,h){return niveau(indice(co2,t,h));}
+
+const fmtD=ts=>new Date(ts*1000).toLocaleString("fr-FR",{day:"2-digit",month:"2-digit",year:"numeric",hour:"2-digit",minute:"2-digit"});
+const nf=(v,d=1)=>v==null||isNaN(v)?"–":Number(v).toLocaleString("fr-FR",{minimumFractionDigits:d,maximumFractionDigits:d});
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const toLocalInput=ts=>{const d=new Date(ts*1000);d.setMinutes(d.getMinutes()-d.getTimezoneOffset());return d.toISOString().slice(0,16);};
+function msg(t,err){const m=$("msg");m.textContent=t;m.className="msg on"+(err?" err":"");}
+function clearMsg(){$("msg").className="msg";}
+
+// ---- réglages enregistrés
+const FIELDS=["iMode","iId","iSec","iRt","iSrv","iSalle","iAuto","sCo2a","sCo2b","sTa","sTb","sHa","sHb","iPer","iFreq","iCours","iH1","iH2","iJ","iPage"];
+function load(){try{cfg=JSON.parse(localStorage.getItem(LS)||"{}")}catch(e){cfg={}}
+  FIELDS.forEach(f=>{if(cfg[f]!=null){const el=$(f);if(el.type==="checkbox")el.checked=cfg[f];else el.value=cfg[f];}});
+  const q=new URLSearchParams(location.search);            // lien de partage : ?srv=...&salle=... → mode visiteur
+  if(q.get("srv")){VISITEUR=true;cfg={...cfg,iMode:"srv",iSrv:q.get("srv")};$("iMode").value="srv";$("iSrv").value=q.get("srv");if(q.get("salle"))$("iSalle").value=q.get("salle");cfg.iSalle=$("iSalle").value;
+    ["bSet","bShare"].forEach(i=>$(i).hidden=true);}
+  modeUI();}
+function save(){if(VISITEUR){FIELDS.forEach(f=>{const el=$(f);cfg[f]=el.type==="checkbox"?el.checked:el.value.trim();});return;}FIELDS.forEach(f=>{const el=$(f);cfg[f]=el.type==="checkbox"?el.checked:el.value.trim();});
+  try{localStorage.setItem(LS,JSON.stringify(cfg))}catch(e){} modeUI();}
+function modeUI(){const srv=$("iMode").value==="srv";$("fDirect").hidden=srv;$("fSrv").hidden=!srv;
+  $("hSalle").textContent="Salle "+$("iSalle").value;$("hMode").textContent=VISITEUR?"consultation":srv?"via le serveur de partage":(cfg.iId?"connexion directe":"non connecté");}
+
+// ---- dates
+function per2range(p,fromEl,toEl){const now=Math.floor(Date.now()/1000);
+  if(p!=="perso")return[now-(+p)*86400,now];
+  const a=Date.parse(fromEl.value)/1000,b=Date.parse(toEl.value)/1000;
+  if(!a||!b||b<=a)throw new Error("Période personnalisée invalide : vérifiez les dates « Du » et « Au ».");
+  return[Math.floor(a),Math.floor(b)];}
+function syncDates(sel,f,t){if(sel.value==="perso"||sel.value==="aff")return;const now=Math.floor(Date.now()/1000);f.value=toLocalInput(now-(+sel.value)*86400);t.value=toLocalInput(now);}
+
+// ---- accès aux données (direct ou serveur de partage)
+async function token(){
+  if(cfg.at&&cfg.exp>Date.now()+60000)return cfg.at;
+  const r=await fetch(API+"/oauth2/token",{method:"POST",headers:{"Content-Type":"application/x-www-form-urlencoded"},
+    body:new URLSearchParams({grant_type:"refresh_token",refresh_token:cfg.iRt,client_id:cfg.iId,client_secret:cfg.iSec}).toString()});
+  const j=await r.json().catch(()=>({}));
+  if(!r.ok||!j.access_token)throw new Error("Connexion Netatmo refusée ("+(j.error||r.status)+"). Vérifiez le client ID, le secret et le refresh token.");
+  cfg.at=j.access_token;cfg.exp=Date.now()+(j.expires_in||10800)*1000;if(j.refresh_token){cfg.iRt=j.refresh_token;$("iRt").value=cfg.iRt;}
+  try{localStorage.setItem(LS,JSON.stringify(cfg))}catch(e){}
+  return cfg.at;}
+async function get(path,params){
+  const qs="?"+new URLSearchParams(params||{}).toString();let r;
+  if(cfg.iMode==="srv"){r=await fetch(cfg.iSrv.replace(/\/+$/,"")+path+qs);}
+  else{const at=await token();r=await fetch(API+path+qs,{headers:{Authorization:"Bearer "+at}});}
+  const j=await r.json().catch(()=>({}));
+  if(!r.ok)throw new Error("Erreur API Netatmo ("+(j.error?.message||j.error||r.status)+")");
+  return j.body;}
+async function measures(id,a,b,scale,onp){
+  let out=[],from=a;
+  for(let k=0;k<60&&from<b;k++){
+    const m=await get("/api/getmeasure",{device_id:id,scale,type:"CO2,Temperature,Humidity,Noise,Pressure",date_begin:from,date_end:b,optimize:"false",real_time:"true",limit:1024});
+    const rows=Object.entries(m||{}).map(([ts,v])=>({ts:+ts,co2:v[0],t:v[1],h:v[2],n:v[3],p:v[4]}));
+    if(!rows.length)break;out=out.concat(rows);
+    const last=Math.max(...rows.map(r=>r.ts));if(rows.length<1024||last<=from)break;from=last+1;onp&&onp(out.length);}
+  out.sort((x,y)=>x.ts-y.ts);out.forEach(d=>{d.i=indice(d.co2,d.t,d.h);d.e=niveau(d.i);});return out;}
+const ready=()=>cfg.iMode==="srv"?!!cfg.iSrv:!!(cfg.iId&&cfg.iSec&&cfg.iRt);
+
+async function refresh(){
+  syncDates($("iPer"),$("iFrom"),$("iTo"));
+  if(!ready()){$("gSub").textContent="Ouvrez « Réglages » pour connecter le capteur.";return;}
+  $("last").textContent="Chargement…";
+  try{
+    const b=await get("/api/gethomecoachsdata");devices=b.devices||[];
+    if(!devices.length)throw new Error("Aucun capteur Home Coach sur ce compte : il doit être installé avec le même compte que l'application dev.netatmo.com.");
+    const selD=$("iDev").value;$("iDev").innerHTML=devices.map(d=>`<option value="${esc(d._id)}">${esc(d.station_name||d._id)}</option>`).join("");
+    if(selD&&devices.some(d=>d._id===selD))$("iDev").value=selD;
+    device=devices.find(d=>d._id===$("iDev").value)||devices[0];
+    const[a,z]=per2range($("iPer").value,$("iFrom"),$("iTo"));
+    sel.clear();data=await measures(device._id,a,z,$("iFreq").value,n=>$("last").textContent="Chargement… "+n+" mesures");
+    clearMsg();render();
+  }catch(e){
+    msg(e instanceof TypeError?"Le navigateur n'arrive pas à joindre Netatmo. Ouvrez la page dans Chrome ou Edge (pas dans un aperçu), vérifiez internet, ou passez par le serveur de partage.":e.message,true);
+    $("last").textContent="Échec à "+new Date().toLocaleTimeString("fr-FR");}
+}
+const hm=s=>{const[h,m]=(s||"0:0").split(":");return +h*60+ +m;};
+function inPlage(ts,h1,h2,j){const d=new Date(ts*1000),wd=d.getDay(),we=wd===0||wd===6;
+  if(j==="wk"&&we)return false;if(j==="we"&&!we)return false;
+  const t=d.getHours()*60+d.getMinutes(),a=hm(h1),b=hm(h2);return a<=b?(t>=a&&t<b):(t>=a||t<b);} // plage de nuit possible (ex. 22:00 → 06:00)
+const filt=(arr,on,freq,h1,h2,j)=>on?arr.filter(d=>inPlage(d.ts,freq==="1day"?"00:00":h1,freq==="1day"?"24:00":h2,j)):arr;
+const plageTxt=(h1,h2,j)=>` · ${h1}–${h2}${j==="wk"?" en semaine":j==="we"?" le week-end":""}`;
+
+// ---- affichage
+function render(){
+  data.forEach(d=>{d.i=indice(d.co2,d.t,d.h);d.e=niveau(d.i);});
+  shown=filt(data,$("iCours").checked,$("iFreq").value,$("iH1").value,$("iH2").value,$("iJ").value);
+  const dd=device?.dashboard_data||{},reach=!!device?.reachable;
+  const vals={co2:dd.CO2,t:dd.Temperature,h:dd.Humidity,n:dd.Noise,p:dd.Pressure};
+  const ids={co2:"Co2",t:"T",h:"H",n:"N",p:"P"},LC=["var(--ok)","var(--mid)","var(--bad)"];
+  let worst=0,why=[];
+  Object.keys(ids).forEach(m=>{const q=qual(m,vals[m]);$("k"+ids[m]).firstChild.nodeValue=nf(vals[m],DEC[m]);
+    $("e"+ids[m]).textContent=q?q[0]:"";const c=q&&q[1]>=0?LC[q[1]]:"var(--line)";$("e"+ids[m]).style.color=q&&q[1]>=0?c:"var(--mut)";$("c"+ids[m]).style.borderTopColor=c;
+    if(q&&["co2","t","h"].includes(m)){worst=Math.max(worst,q[1]);if(q[1]>0)why.push(`${LAB[m]} ${nf(vals[m],DEC[m])} ${UNIT[m]}, ${q[0].toLowerCase()}`);}});
+  const gi=indice(dd.CO2,dd.Temperature,dd.Humidity),g=niveau(gi),ring=$("ring");
+  if(device&&reach&&gi!=null){ring.style.background=COL[g];ring.className="ring live";ring.textContent=gi;
+    $("gTxt").textContent="Confort de la salle : "+g.toLowerCase()+" ("+gi+"/100)";
+    const hi=dd.health_idx;$("gSub").textContent=(hi!=null&&HIDX[hi]?`Application Netatmo : ${HIDX[hi][0].toLowerCase()} · `:"")+"capteur « "+(device.station_name||"")+" »";
+    const parts=[["co2",dd.CO2],["t",dd.Temperature],["h",dd.Humidity]].map(([m,v])=>`${LAB[m]} ${sous(m,v)|0}/100`).join(" · ");
+    $("why").innerHTML=`<li>${esc(parts)}</li>`+(why.length?why.map(w=>`<li>À améliorer : ${esc(w)}</li>`).join(""):"<li>Température, humidité et CO₂ sont dans la zone de confort.</li>");}
+  else{ring.style.background="var(--mut)";ring.className="ring";ring.textContent="–";$("gTxt").textContent=device?"Capteur hors ligne":"Pas encore de données";
+    $("gSub").textContent=device?"Vérifiez la prise et le Wi-Fi du capteur.":"Ouvrez « Réglages » pour connecter le capteur.";$("why").innerHTML="";}
+  $("last").textContent=dd.time_utc?"Mesure du "+fmtD(dd.time_utc):"";
+  $("pInfo").textContent=shown.length?`${shown.length} mesures · ${$("iFreq").selectedOptions[0].textContent.toLowerCase()}${$("iCours").checked?plageTxt($("iH1").value,$("iH2").value,$("iJ").value):""}`:"";
+  table();stats();draw();}
+
+function repart(arr){const c={Confortable:0,Acceptable:0,Médiocre:0,Inconfortable:0};arr.forEach(d=>{if(c[d.e]!=null)c[d.e]++;});const N=arr.length||1;
+  return `<div class="rep">${NIV.map(k=>`<div style="width:${100*c[k]/N}%;background:${COL[k]}"></div>`).join("")}</div>
+  <div class="leg">${NIV.map(k=>`<span><i style="background:${COL[k]}"></i>${k} ${Math.round(100*c[k]/N)} %</span>`).join("")}</div>
+  <p class="note">Indice moyen : ${Math.round(arr.reduce((s,d)=>s+(d.i||0),0)/N)}/100 · ≈ ${nf((c.Médiocre+c.Inconfortable)*STEP[$("iFreq").value]/3600,1)} h médiocres ou inconfortables</p>`;}
+let fE="all",sel=new Set(),lastCk=null;
+let oA=null,oB=null;
+const SORT={tsd:(a,b)=>b.ts-a.ts,tsa:(a,b)=>a.ts-b.ts,id:(a,b)=>(a.i??999)-(b.i??999),co2d:(a,b)=>(b.co2??0)-(a.co2??0),td:(a,b)=>(b.t??0)-(a.t??0),ta:(a,b)=>(a.t??99)-(b.t??99),hd:(a,b)=>(b.h??0)-(a.h??0)};
+const vis=()=>shown.filter(d=>(fE==="all"||d.e===fE)&&(oA==null||d.ts>=oA)&&(oB==null||d.ts<=oB));
+function table(){
+  const v=vis(),rows=v.slice().sort(SORT[$("oSort").value]).slice(0,2000);
+  $("tb").innerHTML=rows.map(d=>`<tr data-ts="${d.ts}"${sel.has(d.ts)?' class="sel"':""}><td class="ck"><input type="checkbox"${sel.has(d.ts)?" checked":""} aria-label="Sélectionner"></td><td>${fmtD(d.ts)}</td><td>${nf(d.co2,0)}</td><td>${nf(d.t)}</td><td>${nf(d.h,0)}</td><td>${nf(d.n,0)}</td><td>${nf(d.p)}</td><td>${d.i??"–"}</td><td><span class="tag" style="background:${COL[d.e]}">${d.e}</span></td></tr>`).join("");
+  $("tNote").textContent=v.length?`${v.length} observations${fE==="all"?"":" « "+fE+" »"} du ${fmtD(Math.min(...v.map(d=>d.ts)))} au ${fmtD(Math.max(...v.map(d=>d.ts)))}${v.length>2000?" · 2 000 premières lignes affichées (« Tout cocher » prend tout)":""}`:"Aucune observation pour ce choix.";
+  selUI();}
+function selUI(){const v=vis(),n=v.filter(d=>sel.has(d.ts)).length;
+  $("selInfo").textContent=n?`${n} observation${n>1?"s":""} cochée${n>1?"s":""}`:"Cochez les lignes à exporter (Maj + clic pour sélectionner une série).";
+  $("ckAll").checked=n>0&&n===v.length;$("ckAll").indeterminate=n>0&&n<v.length;}
+function setSel(ts,on){on?sel.add(ts):sel.delete(ts);const tr=$("tb").querySelector(`tr[data-ts="${ts}"]`);if(tr){tr.classList.toggle("sel",on);tr.querySelector("input").checked=on;}}
+function stats(){
+  if(!shown.length){$("stats").innerHTML=$("mini").innerHTML='<p class="note">Aucune mesure sur cette période.</p>';return;}
+  $("mini").innerHTML=repart(shown);
+  $("stats").innerHTML=`<div><h3>Répartition du confort</h3>${repart(shown)}</div>`+["co2","t","h","n","p"].map(m=>{const v=shown.filter(d=>d[m]!=null);if(!v.length)return"";
+    const mn=v.reduce((a,b)=>b[m]<a[m]?b:a),mx=v.reduce((a,b)=>b[m]>a[m]?b:a),avg=v.reduce((s,d)=>s+d[m],0)/v.length;
+    return `<div><h3>${LAB[m]} (${UNIT[m]})</h3><table><tr><td>Moyenne</td><td>${nf(avg,DEC[m])}</td><td></td></tr><tr><td>Minimum</td><td>${nf(mn[m],DEC[m])}</td><td class="note">${fmtD(mn.ts)}</td></tr><tr><td>Maximum</td><td>${nf(mx[m],DEC[m])}</td><td class="note">${fmtD(mx.ts)}</td></tr></table></div>`;}).join("");}
+
+const svg=$("chart"),tip=$("tip");let geo=null;
+function draw(){
+  const W=svg.clientWidth,H=svg.clientHeight,m=metric,s=S();$("cTitle").textContent=LAB[m]+" ("+UNIT[m]+")";
+  const pts=shown.filter(d=>d[m]!=null);geo=null;
+  if(!pts.length||!W){svg.innerHTML=`<text x="${W/2}" y="${H/2}" text-anchor="middle" fill="currentColor" opacity=".5">Pas encore de mesures</text>`;return;}
+  const band=m==="co2"?{ok:[0,s.co2a],bad:s.co2b}:m==="t"?{ok:[s.ta,s.tb]}:m==="h"?{ok:[s.ha,s.hb]}:m==="n"?{ok:[0,55],bad:65}:{};
+  const L=W<520?40:54,R=12,T=14,B=28;
+  let lo=Math.min(...pts.map(d=>d[m])),hi=Math.max(...pts.map(d=>d[m]));
+  if(band.ok&&(m==="t"||m==="h")){lo=Math.min(lo,band.ok[0]);hi=Math.max(hi,band.ok[1]);} if(band.bad)hi=Math.max(hi,band.bad*1.05);
+  const pad=(hi-lo)*.08||1;lo-=pad;hi+=pad;
+  const x0=pts[0].ts,x1=pts[pts.length-1].ts,X=ts=>L+(ts-x0)/((x1-x0)||1)*(W-L-R),Y=v=>T+(hi-v)/(hi-lo)*(H-T-B),cl=v=>Math.max(T,Math.min(H-B,v));
+  let o="";
+  if(band.ok)o+=`<rect x="${L}" y="${cl(Y(band.ok[1]))}" width="${W-L-R}" height="${Math.max(0,cl(Y(band.ok[0]))-cl(Y(band.ok[1])))}" fill="var(--ok)" opacity=".1"/>`;
+  if(band.bad)o+=`<rect x="${L}" y="${T}" width="${W-L-R}" height="${Math.max(0,cl(Y(band.bad))-T)}" fill="var(--bad)" opacity=".1"/><line x1="${L}" x2="${W-R}" y1="${Y(band.bad)}" y2="${Y(band.bad)}" stroke="var(--bad)" stroke-dasharray="5 4"/>`;
+  for(let i=0;i<=4;i++){const v=lo+(hi-lo)*i/4;o+=`<line x1="${L}" x2="${W-R}" y1="${Y(v)}" y2="${Y(v)}" stroke="var(--line)"/><text x="${L-6}" y="${Y(v)+4}" text-anchor="end" font-size="12" fill="var(--mut)">${nf(v,m==="t"||m==="p"?1:0)}</text>`;}
+  const span=x1-x0,nt=W<520?3:6;
+  for(let i=0;i<=nt;i++){const ts=x0+span*i/nt,d=new Date(ts*1000);const t=span<=2*86400?d.toLocaleString("fr-FR",{weekday:span>86400?"short":undefined,hour:"2-digit",minute:"2-digit"}):d.toLocaleDateString("fr-FR",{day:"2-digit",month:"2-digit"});
+    o+=`<text x="${X(ts)}" y="${H-8}" text-anchor="${i===0?"start":i===nt?"end":"middle"}" font-size="12" fill="var(--mut)">${t}</text>`;}
+  const gap=Math.max(STEP[$("iFreq").value]*3,1800);let path="";pts.forEach((d,i)=>{path+=(i&&d.ts-pts[i-1].ts<=gap?"L":"M")+X(d.ts).toFixed(1)+" "+Y(d[m]).toFixed(1);});
+  o+=`<path d="${path}" fill="none" stroke="var(--navy)" stroke-width="2" stroke-linejoin="round"/>`;
+  if(pts.length<80)o+=pts.map(d=>`<circle cx="${X(d.ts)}" cy="${Y(d[m])}" r="2.5" fill="var(--navy)"/>`).join("");
+  o+=`<line id="cur" y1="${T}" y2="${H-B}" stroke="var(--amber)" opacity="0"/><circle id="curp" r="5" fill="var(--amber)" opacity="0"/>`;
+  svg.innerHTML=o;geo={pts,X,Y,L,R,W,m};}
+const ro=new ResizeObserver(draw);ro.observe(svg);
+function hover(ev){if(!geo)return;const r=svg.getBoundingClientRect(),x=(ev.touches?ev.touches[0].clientX:ev.clientX)-r.left;
+  if(x<geo.L||x>geo.W-geo.R){out();return;}
+  let best=geo.pts[0],bd=1e9;for(const d of geo.pts){const dx=Math.abs(geo.X(d.ts)-x);if(dx<bd){bd=dx;best=d;}}
+  const cx=geo.X(best.ts),cy=geo.Y(best[geo.m]);const c=svg.querySelector("#cur"),p=svg.querySelector("#curp");
+  c.setAttribute("x1",cx);c.setAttribute("x2",cx);c.setAttribute("opacity",".7");p.setAttribute("cx",cx);p.setAttribute("cy",cy);p.setAttribute("opacity","1");
+  const q=qual(geo.m,best[geo.m]);tip.textContent=`${fmtD(best.ts)} · ${nf(best[geo.m],DEC[geo.m])} ${UNIT[geo.m]}${q&&q[1]>=0?" · "+q[0]:""} · confort ${best.i??"–"}/100`;tip.style.display="block";
+  const tw=tip.offsetWidth;tip.style.left=Math.min(Math.max(0,cx-tw/2),r.width-tw)+"px";tip.style.top=Math.max(0,cy-46)+"px";}
+function out(){tip.style.display="none";svg.querySelector("#cur")?.setAttribute("opacity","0");svg.querySelector("#curp")?.setAttribute("opacity","0");}
+svg.addEventListener("mousemove",hover);svg.addEventListener("touchmove",hover,{passive:true});svg.addEventListener("mouseleave",out);
+
+// ---- export
+const XK={co2:["co2_ppm"],t:["temperature_c"],h:["humidite_pct"],n:["bruit_db"],p:["pression_hpa"],e:["etat_confort"],i:["indice_confort"]};
+function xRows(arr){const vars=[...$("xVars").querySelectorAll("input:checked")].map(i=>i.value);
+  return arr.map(d=>{const o={horodatage_utc:new Date(d.ts*1000).toISOString(),horodatage_local:fmtD(d.ts),capteur:device?.station_name||device?._id||"",id_salle:$("iSalle").value.trim()};vars.forEach(v=>o[XK[v][0]]=d[v]);return o;});}
+async function xData(){
+  const F=arr=>filt(arr,$("xCours").checked,$("xFreq").value,$("xH1").value,$("xH2").value,$("xJ").value);
+  if($("xPer").value==="aff"&&$("xFreq").value===$("iFreq").value)return F(data);
+  if(!device)throw new Error("Connectez d'abord le capteur.");
+  const[a,z]=$("xPer").value==="aff"?per2range($("iPer").value,$("iFrom"),$("iTo")):per2range($("xPer").value,$("xFrom"),$("xTo"));
+  return F(await measures(device._id,a,z,$("xFreq").value,n=>$("xInfo").textContent="Chargement… "+n+" mesures"));}
+function toCsv(r){const h=Object.keys(r[0]),c=v=>typeof v==="number"?String(v).replace(".",","):`"${String(v??"").replace(/"/g,'""')}"`;return "﻿"+[h.join(";"),...r.map(o=>h.map(k=>c(o[k])).join(";"))].join("\r\n");}
+function toJson(r){return JSON.stringify({projet:"BâtiConfort 3D",editeur:"KG Géonumérique",capteur:device?._id||"",salle:$("iSalle").value.trim(),frequence:$("xFreq").value,plage_horaire:$("xCours").checked?{de:$("xH1").value,a:$("xH2").value,jours:$("xJ").value}:null,seuils:S(),nombre:r.length,mesures:r},null,2);}
+function dl(name,text,type){const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([text],{type}));a.download=name;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},500);}
+async function doExport(copy){
+  try{$("xInfo").textContent="Préparation…";const arr=await xData();if(!arr.length)return $("xInfo").textContent="Aucune mesure sur cette période.";
+    const r=xRows(arr),fmt=$("xFmt").value,txt=fmt==="csv"?toCsv(r):toJson(r);
+    if(copy){await navigator.clipboard.writeText(fmt==="csv"?txt.slice(1):txt);$("xInfo").textContent=`${r.length} mesures copiées : collez-les avec Ctrl+V dans Excel, un e-mail ou un programme.`;return;}
+    const name=`baticonfort3d_salle${$("iSalle").value.trim()}_${$("xFreq").value}_${new Date(arr[0].ts*1000).toISOString().slice(0,10)}_au_${new Date(arr[arr.length-1].ts*1000).toISOString().slice(0,10)}.${fmt}`;
+    dl(name,txt,fmt==="csv"?"text/csv;charset=utf-8":"application/json");$("xInfo").textContent=`${r.length} mesures exportées dans ${name}`;
+  }catch(e){$("xInfo").textContent=e.message||"Copie refusée par le navigateur.";}}
+function xSync(){const p=$("xPer").value;if(p==="aff"){$("xFrom").value=$("iFrom").value;$("xTo").value=$("iTo").value;}else syncDates($("xPer"),$("xFrom"),$("xTo"));}
+
+// ---- partage
+function shareLink(){const base=($("iPage").value.trim()||location.href.split(/[?#]/)[0]);
+  return cfg.iMode==="srv"&&cfg.iSrv?base+"?srv="+encodeURIComponent(cfg.iSrv)+"&salle="+encodeURIComponent($("iSalle").value.trim()):"";}
+function shareUI(){const l=shareLink();$("shOk").hidden=!l;$("shNo").hidden=!!l;$("shLink").value=l||"Configurez d'abord le serveur de partage";}
+
+// ---- sélection et export direct
+$("tb").onclick=e=>{const tr=e.target.closest("tr");if(!tr)return;const ts=+tr.dataset.ts,on=!sel.has(ts);
+  if(e.shiftKey&&lastCk!=null){const trs=[...$("tb").rows],a=trs.findIndex(r=>+r.dataset.ts===lastCk),b=trs.indexOf(tr);if(a>=0){const[x,y]=a<b?[a,b]:[b,a];trs.slice(x,y+1).forEach(r=>setSel(+r.dataset.ts,on));}}
+  else setSel(ts,on);lastCk=ts;selUI();};
+$("ckAll").onclick=()=>{const on=$("ckAll").checked;vis().forEach(d=>on?sel.add(d.ts):sel.delete(d.ts));table();};
+$("sAll").onclick=()=>{vis().forEach(d=>sel.add(d.ts));table();};
+$("sNone").onclick=()=>{sel.clear();table();};
+$("fEtat").onclick=e=>{const b=e.target.closest("button");if(!b)return;fE=b.dataset.e;[...$("fEtat").children].forEach(x=>x.setAttribute("aria-pressed",x===b));table();};
+function selExport(fmt){const arr=shown.filter(d=>sel.has(d.ts));
+  if(!arr.length)return msg("Aucune observation cochée : cochez des lignes dans « Toutes les observations ».",true);
+  const r=arr.map(d=>({horodatage_utc:new Date(d.ts*1000).toISOString(),horodatage_local:fmtD(d.ts),capteur:device?.station_name||device?._id||"",id_salle:$("iSalle").value.trim(),co2_ppm:d.co2,temperature_c:d.t,humidite_pct:d.h,bruit_db:d.n,pression_hpa:d.p,indice_confort:d.i,etat_confort:d.e}));
+  const name=`baticonfort3d_salle${$("iSalle").value.trim()}_selection_${r.length}_mesures.${fmt}`;
+  dl(name,fmt==="csv"?toCsv(r):toJson(r),fmt==="csv"?"text/csv;charset=utf-8":"application/json");msg(`${r.length} observations exportées dans ${name}`);}
+async function copier(txt){try{await navigator.clipboard.writeText(txt);return true;}catch(e){
+  const t=document.createElement("textarea");t.value=txt;t.style.position="fixed";t.style.opacity="0";document.body.appendChild(t);t.select();let ok=false;try{ok=document.execCommand("copy");}catch(_){}t.remove();return ok;}}
+function selRows(){return shown.filter(d=>sel.has(d.ts)).sort((a,b)=>a.ts-b.ts);}
+async function selCopy(kind){const arr=selRows();
+  if(!arr.length)return msg("Aucune observation cochée : cochez une ou plusieurs lignes, puis copiez.",true);
+  const salle=$("iSalle").value.trim();
+  const txt=kind==="json"?JSON.stringify(arr.map(d=>({horodatage:new Date(d.ts*1000).toISOString(),salle,co2_ppm:d.co2,temperature_c:d.t,humidite_pct:d.h,bruit_db:d.n,pression_hpa:d.p,indice_confort:d.i,etat_confort:d.e})),null,2)
+    :arr.map(d=>`${fmtD(d.ts)} · Salle ${salle} · CO₂ ${nf(d.co2,0)} ppm · ${nf(d.t)} °C · ${nf(d.h,0)} % · ${nf(d.n,0)} dB · ${nf(d.p)} hPa · confort ${d.i??"–"}/100 (${d.e})`).join("\n");
+  const ok=await copier(txt);const b=$(kind==="json"?"cJson":"cTxt"),old=b.textContent;
+  if(ok){b.textContent="Copié ✓";setTimeout(()=>b.textContent=old,1800);msg(`${arr.length} ligne${arr.length>1?"s":""} copiée${arr.length>1?"s":""} : collez avec Ctrl+V (ou appui long › Coller sur téléphone).`);}
+  else msg("Le navigateur a refusé la copie. Utilisez « Exporter ».",true);}
+$("cTxt").onclick=()=>selCopy("txt");$("cJson").onclick=()=>selCopy("json");
+$("sCsv").onclick=()=>selExport("csv");$("sJson").onclick=()=>selExport("json");
+
+// ---- période rapide de la liste
+function oSet(a,b){oA=a;oB=b;$("oFrom").value=a?toLocalInput(a):"";$("oTo").value=b?toLocalInput(b):"";table();}
+$("qP").onclick=e=>{const b=e.target.closest("button");if(!b)return;[...$("qP").children].forEach(x=>x.setAttribute("aria-pressed",x===b));
+  const now=Math.floor(Date.now()/1000),d0=new Date();d0.setHours(0,0,0,0);const t0=Math.floor(d0/1000);
+  ({all:()=>oSet(null,null),"1h":()=>oSet(now-3600,now),"3h":()=>oSet(now-10800,now),today:()=>oSet(t0,now),yest:()=>oSet(t0-86400,t0-1)})[b.dataset.q]();};
+["oFrom","oTo"].forEach(i=>$(i).onchange=()=>{[...$("qP").children].forEach(x=>x.setAttribute("aria-pressed","false"));
+  oA=$("oFrom").value?Math.floor(Date.parse($("oFrom").value)/1000):null;oB=$("oTo").value?Math.floor(Date.parse($("oTo").value)/1000):null;table();});
+$("oSort").onchange=table;
+
+// ---- évènements
+document.querySelector(".tabs").onclick=e=>{const b=e.target.closest("button");if(!b)return;
+  document.querySelectorAll(".tabs button").forEach(x=>x.setAttribute("aria-selected",x===b));["g","b"].forEach(t=>$("tab-"+t).hidden=t!==b.dataset.tab);if(b.dataset.tab==="g")draw();};
+$("segM").onclick=e=>{const b=e.target.closest("button");if(!b)return;metric=b.dataset.m;[...$("segM").children].forEach(x=>x.setAttribute("aria-pressed",x===b));draw();};
+$("iPer").onchange=()=>{syncDates($("iPer"),$("iFrom"),$("iTo"));save();if($("iPer").value!=="perso")refresh();};
+["iFrom","iTo"].forEach(i=>$(i).onchange=()=>{$("iPer").value="perso";});
+["xFrom","xTo"].forEach(i=>$(i).onchange=()=>{$("xPer").value="perso";});
+$("iFreq").onchange=()=>{save();refresh();};$("iDev").onchange=refresh;
+function plUI(){const on=$("iCours").checked;$("hRow").hidden=!on;$("jRow").hidden=!on;}
+$("iCours").onchange=()=>{plUI();save();render();};["iH1","iH2","iJ"].forEach(i=>$(i).onchange=()=>{save();render();});
+$("bLoad").onclick=()=>{save();refresh();};
+$("bRefresh").onclick=refresh;
+$("bSet").onclick=()=>$("dSet").showModal();
+$("bHelp").onclick=()=>$("dHelp").showModal();
+$("bShare").onclick=()=>{shareUI();$("dShare").showModal();};
+$("iPage").oninput=()=>{save();shareUI();};
+$("shCopy").onclick=async()=>{const l=shareLink();if(!l)return;try{await navigator.clipboard.writeText(l);$("shCopy").textContent="Lien copié ✓";setTimeout(()=>$("shCopy").textContent="Copier le lien",2000);}catch(e){$("shLink").select();}};
+$("bExp").onclick=()=>{$("xFreq").value=$("iFreq").value;$("xCours").checked=$("iCours").checked;$("xH1").value=$("iH1").value;$("xH2").value=$("iH2").value;$("xJ").value=$("iJ").value;$("xPer").value="aff";xSync();$("xInfo").textContent="";$("dExp").showModal();};
+$("xPer").onchange=xSync;
+$("xGo").onclick=()=>doExport(false);$("xCopy").onclick=()=>doExport(true);
+$("iMode").onchange=modeUI;
+$("bSave").onclick=()=>{save();cfg.at=null;cfg.exp=0;auto();$("dSet").close();refresh();};
+$("bForget").onclick=()=>{["iId","iSec","iRt"].forEach(i=>$(i).value="");save();cfg.at=null;msg("Codes effacés de ce navigateur.");};
+["sCo2a","sCo2b","sTa","sTb","sHa","sHb"].forEach(i=>$(i).onchange=()=>{save();render();});
+function auto(){clearInterval(timer);const mn=+($("iAuto").value||0);if(mn)timer=setInterval(()=>{if($("iPer").value!=="perso")refresh();},mn*60000);}
+load();plUI();syncDates($("iPer"),$("iFrom"),$("iTo"));auto();draw();
+if(ready())refresh();else if(!VISITEUR)$("dSet").showModal();
+}
+</script>
+</body>
+</html>
