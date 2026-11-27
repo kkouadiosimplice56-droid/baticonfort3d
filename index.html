@@ -183,18 +183,13 @@ code{background:var(--soft);padding:1px 5px;border-radius:5px;overflow-wrap:anyw
 <dialog id="dSet"><form method="dialog">
   <div class="hd"><h2>Réglages</h2><button value="x" aria-label="Fermer">Fermer</button></div>
   <div class="bd">
-    <h3 class="sec" style="margin-top:0">Connexion au capteur</h3>
-    <div class="form">
-      <label>Mode de connexion<select id="iMode"><option value="srv">Serveur de partage (sans codes)</option><option value="direct">Direct (avec mes codes Netatmo)</option></select></label>
-      <label>Numéro de la salle (Room Revit)<input id="iSalle" value="1.02"></label>
-    </div>
-    <div class="form" id="fDirect" style="margin-top:10px">
-      <label>Client ID<input id="iId" autocomplete="off"></label>
-      <label>Client secret<input id="iSec" type="password" autocomplete="off"></label>
-      <label>Refresh token<input id="iRt" type="password" autocomplete="off"></label>
-    </div>
-    <div class="form" id="fSrv" style="margin-top:10px">
-      <label>Adresse du serveur de partage<input id="iSrv" placeholder="https://baticonfort3d.xxx.workers.dev"></label>
+    <p class="note" style="margin-top:0">« Enregistrer pour moi » ne change les réglages que dans <b>votre</b> navigateur : chacun peut choisir ses propres seuils sans rien changer pour les autres. « Seuils par défaut » revient aux réglages du propriétaire.</p>
+    <h3 class="sec">Salle</h3>
+    <div class="form"><label>Numéro de la salle (Room Revit)<input id="iSalle" value="1.02"></label></div>
+    <div id="secConn">
+    <h3 class="sec">Serveur de partage (propriétaire)</h3>
+    <div class="form"><label>Adresse du serveur<input id="iSrv" placeholder="https://baticonfort3d.xxx.workers.dev"></label></div>
+    <input type="hidden" id="iMode" value="srv"><input type="hidden" id="iId"><input type="hidden" id="iSec"><input type="hidden" id="iRt">
     </div>
     <h3 class="sec">Seuils de confort</h3>
     <div class="form">
@@ -206,9 +201,15 @@ code{background:var(--soft);padding:1px 5px;border-radius:5px;overflow-wrap:anyw
       <label>Humidité confort max (%)<input type="number" id="sHb" value="65"></label>
       <label>Actualisation automatique<select id="iAuto"><option value="0">Désactivée</option><option value="5" selected>Toutes les 5 min</option><option value="10">Toutes les 10 min</option><option value="30">Toutes les 30 min</option></select></label>
     </div>
-    <p class="note">Tout reste uniquement dans ce navigateur, rien n'est écrit dans le fichier.</p>
   </div>
-  <div class="ft"><button type="button" id="bForget">Effacer mes codes</button><button class="pri" type="button" id="bSave">Enregistrer et se connecter</button></div>
+  <div class="bd" id="secPub" hidden style="border-top:1px solid var(--line)">
+    <h3 class="sec" style="margin-top:0">Appliquer à tout le monde (propriétaire)</h3>
+    <p class="note" style="margin-top:0">Publie les seuils, la salle et l'actualisation ci-dessus comme <b>valeurs de départ pour tous les visiteurs</b>. Chacun pourra encore les changer pour lui-même.</p>
+    <div class="form" style="margin-top:8px"><label>Mot de passe propriétaire<input type="password" id="iKey" autocomplete="current-password"></label>
+      <button class="pri" type="button" id="bPub" style="align-self:end">Publier pour tout le monde</button></div>
+    <p class="note" id="pubInfo"></p>
+  </div>
+  <div class="ft"><button type="button" id="bDef">Seuils par défaut</button><button class="pri" type="button" id="bSave">Enregistrer pour moi</button></div>
 </form></dialog>
 
 <!-- Export -->
@@ -245,11 +246,8 @@ code{background:var(--soft);padding:1px 5px;border-radius:5px;overflow-wrap:anyw
 <dialog id="dShare"><form method="dialog">
   <div class="hd"><h2>Partager le tableau de bord</h2><button value="x">Fermer</button></div>
   <div class="bd help">
-    <p>Vos codes Netatmo restent dans <b>votre</b> navigateur : une autre personne qui ouvre la page ne les a pas, et ne voit donc rien. Pour qu'elle voie les mêmes mesures <b>sans aucun code</b>, la page doit passer par un <b>serveur de partage</b> qui garde les codes en lieu sûr (fichier <code>serveur_partage_cloudflare.js</code>, gratuit sur Cloudflare).</p>
-    <p id="shOk" hidden>Le serveur de partage est configuré. Copiez ce lien et envoyez-le : la personne arrive directement sur le tableau de bord, en <b>mode consultation</b>. Elle peut regarder, filtrer, copier et exporter les mesures, mais elle n'a ni « Réglages » ni « Partager » : vous restez le seul propriétaire.</p>
-    <p id="shNo">Renseignez l'adresse du serveur de partage dans « Réglages ».</p>
-    <label>Adresse de cette page en ligne (GitHub Pages, Netlify…)<input id="iPage" placeholder="https://monsite.github.io/baticonfort3d/"></label>
-    <label style="margin-top:10px">Lien à partager<input id="shLink" readonly></label>
+    <p>Envoyez ce lien : la personne voit directement les mesures du capteur, <b>sans aucun code</b>. Elle peut régler ses propres seuils, filtrer, copier et exporter, mais elle ne peut rien changer pour vous ni pour les autres. Les codes Netatmo restent cachés dans le serveur Cloudflare.</p>
+    <label>Lien à partager<input id="shLink" readonly></label>
   </div>
   <div class="ft"><button class="pri" type="button" id="shCopy">Copier le lien</button></div>
 </form></dialog>
@@ -269,7 +267,7 @@ code{background:var(--soft);padding:1px 5px;border-radius:5px;overflow-wrap:anyw
       <tr><td><b>Bruit</b></td><td>Silencieux &lt; 40 dB · Calme &lt; 55 dB · Bruyant &lt; 65 dB · Très bruyant au-delà. Indicatif, il n'entre pas dans l'indice.</td></tr>
       <tr><td><b>Pression</b></td><td>Valeur atmosphérique, donnée à titre d'information (météo).</td></tr>
     </table>
-    <p>Tous les seuils sont modifiables dans « Réglages ».</p>
+    <p>Tous les seuils sont modifiables dans « Réglages ». Chacun règle les siens : ils ne s'appliquent qu'à la personne qui les modifie.</p>
   </div>
 </form></dialog>
 
@@ -311,21 +309,25 @@ function msg(t,err){const m=$("msg");m.textContent=t;m.className="msg on"+(err?"
 function clearMsg(){$("msg").className="msg";}
 
 // ---- réglages enregistrés
-const FIELDS=["iMode","iId","iSec","iRt","iSrv","iSalle","iAuto","sCo2a","sCo2b","sTa","sTb","sHa","sHb","iPer","iFreq","iCours","iH1","iH2","iJ","iPage"];
+const FIELDS=["iMode","iId","iSec","iRt","iSrv","iSalle","iAuto","sCo2a","sCo2b","sTa","sTb","sHa","sHb","iPer","iFreq","iCours","iH1","iH2","iJ"];
+const SECRETS=["iMode","iId","iSec","iRt","iSrv"];
 function load(){try{cfg=JSON.parse(localStorage.getItem(LS)||"{}")}catch(e){cfg={}}
   FIELDS.forEach(f=>{if(cfg[f]!=null){const el=$(f);if(el.type==="checkbox")el.checked=cfg[f];else el.value=cfg[f];}});
   const q=new URLSearchParams(location.search),admin=location.hash==="#admin";
   if(!cfg.iSrv){cfg.iSrv=SRV_DEFAUT;$("iSrv").value=SRV_DEFAUT;}
-  if(!cfg.iMode){cfg.iMode="srv";$("iMode").value="srv";}
-  if(!admin){                                               // tout le monde, sauf le propriétaire (#admin) : consultation seule
+  ["iId","iSec","iRt","at","exp"].forEach(k=>delete cfg[k]);cfg.iMode="srv";$("iMode").value="srv"; // plus aucun code Netatmo dans le navigateur
+  try{localStorage.setItem(LS,JSON.stringify(cfg))}catch(e){}
+  if(!admin){                                               // visiteurs : mêmes outils, sans la partie connexion                                               // tout le monde, sauf le propriétaire (#admin) : consultation seule
     VISITEUR=true;const srv=q.get("srv")||SRV_DEFAUT;cfg={...cfg,iMode:"srv",iSrv:srv};$("iMode").value="srv";$("iSrv").value=srv;
     if(q.get("salle"))$("iSalle").value=q.get("salle");cfg.iSalle=$("iSalle").value;
-    ["bSet","bShare"].forEach(i=>$(i).hidden=true);}
+    $("secConn").hidden=true;}
+  else{try{$("iKey").value=localStorage.getItem(LS+"_key")||"";}catch(e){}}
   modeUI();}
-function save(){if(VISITEUR){FIELDS.forEach(f=>{const el=$(f);cfg[f]=el.type==="checkbox"?el.checked:el.value.trim();});return;}FIELDS.forEach(f=>{const el=$(f);cfg[f]=el.type==="checkbox"?el.checked:el.value.trim();});
-  try{localStorage.setItem(LS,JSON.stringify(cfg))}catch(e){} modeUI();}
-function modeUI(){const srv=$("iMode").value==="srv";$("fDirect").hidden=srv;$("fSrv").hidden=!srv;
-  $("hSalle").textContent="Salle "+$("iSalle").value;$("hMode").textContent=VISITEUR?"consultation":srv?"via le serveur de partage":(cfg.iId?"connexion directe":"non connecté");}
+function save(){FIELDS.forEach(f=>{if(VISITEUR&&SECRETS.includes(f))return;const el=$(f);cfg[f]=el.type==="checkbox"?el.checked:el.value.trim();});
+  let st=cfg;if(VISITEUR){st={};let old={};try{old=JSON.parse(localStorage.getItem(LS)||"{}")}catch(e){}
+    FIELDS.forEach(f=>{if(!SECRETS.includes(f))st[f]=cfg[f];});st.perso=cfg.perso;SECRETS.forEach(f=>{if(old[f]!=null)st[f]=old[f];});}   // un visiteur n'enregistre jamais de connexion
+  try{localStorage.setItem(LS,JSON.stringify(st))}catch(e){} modeUI();}
+function modeUI(){$("hSalle").textContent="Salle "+$("iSalle").value;$("hMode").textContent=VISITEUR?"mesures en direct":"propriétaire";}
 
 // ---- dates
 function per2range(p,fromEl,toEl){const now=Math.floor(Date.now()/1000);
@@ -336,19 +338,9 @@ function per2range(p,fromEl,toEl){const now=Math.floor(Date.now()/1000);
 function syncDates(sel,f,t){if(sel.value==="perso"||sel.value==="aff")return;const now=Math.floor(Date.now()/1000);f.value=toLocalInput(now-(+sel.value)*86400);t.value=toLocalInput(now);}
 
 // ---- accès aux données (direct ou serveur de partage)
-async function token(){
-  if(cfg.at&&cfg.exp>Date.now()+60000)return cfg.at;
-  const r=await fetch(API+"/oauth2/token",{method:"POST",headers:{"Content-Type":"application/x-www-form-urlencoded"},
-    body:new URLSearchParams({grant_type:"refresh_token",refresh_token:cfg.iRt,client_id:cfg.iId,client_secret:cfg.iSec}).toString()});
-  const j=await r.json().catch(()=>({}));
-  if(!r.ok||!j.access_token)throw new Error("Connexion Netatmo refusée ("+(j.error||r.status)+"). Vérifiez le client ID, le secret et le refresh token.");
-  cfg.at=j.access_token;cfg.exp=Date.now()+(j.expires_in||10800)*1000;if(j.refresh_token){cfg.iRt=j.refresh_token;$("iRt").value=cfg.iRt;}
-  try{localStorage.setItem(LS,JSON.stringify(cfg))}catch(e){}
-  return cfg.at;}
 async function get(path,params){
   const qs="?"+new URLSearchParams(params||{}).toString();let r;
-  if(cfg.iMode==="srv"){r=await fetch(cfg.iSrv.replace(/\/+$/,"")+path+qs);}
-  else{const at=await token();r=await fetch(API+path+qs,{headers:{Authorization:"Bearer "+at}});}
+  r=await fetch((cfg.iSrv||SRV_DEFAUT).replace(/\/+$/,"")+path+qs);
   const j=await r.json().catch(()=>({}));
   if(!r.ok)throw new Error("Erreur API Netatmo ("+(j.error?.message||j.error||r.status)+")");
   return j.body;}
@@ -360,7 +352,7 @@ async function measures(id,a,b,scale,onp){
     if(!rows.length)break;out=out.concat(rows);
     const last=Math.max(...rows.map(r=>r.ts));if(rows.length<1024||last<=from)break;from=last+1;onp&&onp(out.length);}
   out.sort((x,y)=>x.ts-y.ts);out.forEach(d=>{d.i=indice(d.co2,d.t,d.h);d.e=niveau(d.i);});return out;}
-const ready=()=>cfg.iMode==="srv"?!!cfg.iSrv:!!(cfg.iId&&cfg.iSec&&cfg.iRt);
+const ready=()=>true;
 
 async function refresh(){
   syncDates($("iPer"),$("iFrom"),$("iTo"));
@@ -490,9 +482,8 @@ async function doExport(copy){
 function xSync(){const p=$("xPer").value;if(p==="aff"){$("xFrom").value=$("iFrom").value;$("xTo").value=$("iTo").value;}else syncDates($("xPer"),$("xFrom"),$("xTo"));}
 
 // ---- partage
-function shareLink(){const base=($("iPage").value.trim()||location.href.split(/[?#]/)[0]);
-  return cfg.iSrv?base+"?salle="+encodeURIComponent($("iSalle").value.trim()):"";}
-function shareUI(){const l=shareLink();$("shOk").hidden=!l;$("shNo").hidden=!!l;$("shLink").value=l||"Configurez d'abord le serveur de partage";}
+function shareLink(){return location.href.split(/[?#]/)[0]+"?salle="+encodeURIComponent($("iSalle").value.trim());}
+function shareUI(){$("shLink").value=shareLink();}
 
 // ---- sélection et export direct
 $("tb").onclick=e=>{const tr=e.target.closest("tr");if(!tr)return;const ts=+tr.dataset.ts,on=!sel.has(ts);
@@ -545,18 +536,34 @@ $("bRefresh").onclick=refresh;
 $("bSet").onclick=()=>$("dSet").showModal();
 $("bHelp").onclick=()=>$("dHelp").showModal();
 $("bShare").onclick=()=>{shareUI();$("dShare").showModal();};
-$("iPage").oninput=()=>{save();shareUI();};
 $("shCopy").onclick=async()=>{const l=shareLink();if(!l)return;try{await navigator.clipboard.writeText(l);$("shCopy").textContent="Lien copié ✓";setTimeout(()=>$("shCopy").textContent="Copier le lien",2000);}catch(e){$("shLink").select();}};
 $("bExp").onclick=()=>{$("xFreq").value=$("iFreq").value;$("xCours").checked=$("iCours").checked;$("xH1").value=$("iH1").value;$("xH2").value=$("iH2").value;$("xJ").value=$("iJ").value;$("xPer").value="aff";xSync();$("xInfo").textContent="";$("dExp").showModal();};
 $("xPer").onchange=xSync;
 $("xGo").onclick=()=>doExport(false);$("xCopy").onclick=()=>doExport(true);
 $("iMode").onchange=modeUI;
-$("bSave").onclick=()=>{save();cfg.at=null;cfg.exp=0;auto();$("dSet").close();refresh();};
-$("bForget").onclick=()=>{["iId","iSec","iRt"].forEach(i=>$(i).value="");save();cfg.at=null;msg("Codes effacés de ce navigateur.");};
-["sCo2a","sCo2b","sTa","sTb","sHa","sHb"].forEach(i=>$(i).onchange=()=>{save();render();});
+$("bSave").onclick=()=>{markPerso();save();auto();$("dSet").close();refresh();};
+// ---- réglages publiés par le propriétaire (valeurs de départ pour tous)
+const PUBK=["sCo2a","sCo2b","sTa","sTb","sHa","sHb","iSalle","iAuto"];
+let DEF={sCo2a:"800",sCo2b:"1300",sTa:"19",sTb:"24",sHa:"30",sHb:"65",iSalle:"1.02",iAuto:"5"};
+const srvURL=()=>(cfg.iSrv||SRV_DEFAUT).replace(/\/+$/,"");
+async function loadPub(){try{const r=await fetch(srvURL()+"/config",{cache:"no-store"});if(!r.ok)return;const c=await r.json();
+    PUBK.forEach(k=>{if(c[k]!=null&&c[k]!=="")DEF[k]=String(c[k]);});
+    if(!cfg.perso){PUBK.forEach(k=>$(k).value=DEF[k]);modeUI();auto();}}catch(e){}}
+function markPerso(){cfg.perso=PUBK.some(k=>String($(k).value)!==String(DEF[k]));}
+$("bDef").onclick=()=>{PUBK.forEach(k=>$(k).value=DEF[k]);cfg.perso=false;save();auto();render();msg("Réglages remis aux valeurs publiées par le propriétaire.");};
+["sCo2a","sCo2b","sTa","sTb","sHa","sHb"].forEach(i=>$(i).onchange=()=>{markPerso();save();render();});
+$("bPub").onclick=async()=>{const key=$("iKey").value;if(!key)return $("pubInfo").textContent="Entrez le mot de passe propriétaire.";
+  const body={};PUBK.forEach(k=>body[k]=$(k).value);$("pubInfo").textContent="Publication…";
+  try{const r=await fetch(srvURL()+"/config",{method:"POST",headers:{"Content-Type":"application/json","X-Admin-Key":key},body:JSON.stringify(body)});
+    const j=await r.json().catch(()=>({}));
+    if(!r.ok)return $("pubInfo").textContent="Refusé : "+(j.error||r.status);
+    try{localStorage.setItem(LS+"_key",key)}catch(e){}
+    PUBK.forEach(k=>DEF[k]=String(body[k]));cfg.perso=false;save();
+    $("pubInfo").textContent="Publié ✓ Tous les visiteurs ont maintenant ces réglages par défaut.";
+  }catch(e){$("pubInfo").textContent="Impossible de joindre le serveur de partage.";}};
 function auto(){clearInterval(timer);const mn=+($("iAuto").value||0);if(mn)timer=setInterval(()=>{if($("iPer").value!=="perso")refresh();},mn*60000);}
 load();plUI();syncDates($("iPer"),$("iFrom"),$("iTo"));auto();draw();
-if(ready())refresh();else if(!VISITEUR)$("dSet").showModal();
+loadPub().then(()=>{render();refresh();});
 }
 </script>
 </body>
